@@ -1,0 +1,45 @@
+<style>
+
+  .badge-high { background-color: #f44336; }
+  .badge-medium { background-color: #ff9800; }
+  .badge-low { background-color: #4caf50; }
+  
+</style>
+
+<div class="container mt-5">
+  <h1 class="mb-4">Notifications</h1>
+  <ul class="list-group">
+    <% if @user_notifications.present? %>
+      <% @user_notifications.each do |notification| %>
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-8">
+              <% if notification.issue_id.present? %>
+                <span class="badge text-dark bg-danger">
+                  Issue
+                </span>
+              <% else %>
+                <span class="badge text-dark bg-<%= notification.priority_class %>">
+                  Buffer
+                </span>
+              <% end %>
+              <%= link_to notification.message, notification_path(notification) %>
+            </div>
+            <div class="col-4 text-right">
+              <small><%= notification.created_at.strftime("%B %d, %Y %I:%M %p") %></small>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    <% else %>
+      <p class='alert alert-info text-center mt-3'>Hey user, currently there are no notifications.</p>
+    <% end %>
+  </ul>
+</div>
+
+
+
+
+
+
+

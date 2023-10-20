@@ -1,0 +1,16 @@
+<h1>Your Issue Has Been Resolved</h1>
+  <p>Dear <%= @user.name %>,</p>
+  <p>Your issue for the following item has been resolved:</p>
+  
+  <table>
+    <tr>
+      <td><strong>Item Name:</strong></td>
+      <td><%= @item.name %></td>
+    </tr>
+    <tr>
+      <td><strong>Resolved On:</strong></td>
+      <td><%= @resolved_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
+    </tr>
+  </table>
+
+  

@@ -1,0 +1,25 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card border-0 shadow-lg">
+        <div class="card-body">
+          <h3 class="card-title text-center">
+              Welcome to the Inventory Management System, <%= current_user.name %>
+          </h3>
+          <p class="card-text text-center">
+            <% if current_user.admin? %>
+              This is the admin dashboard where you can manage inventory data and settings.
+            <% else %>
+              Please let us know if you encounter any issues related to your items.
+            <% end %>
+          </p>
+          <%if current_user.admin?%>
+            <%= link_to 'Get Started', items_path,class:"btn btn-primary btn-block"%>
+            <%else%>
+            <%= link_to 'Get Started', issues_path ,class:"btn btn-primary btn-block"%>
+          <%end%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

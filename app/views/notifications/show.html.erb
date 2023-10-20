@@ -1,0 +1,57 @@
+<% if current_user.role == 'admin' && @notification.issue_id.present? %>
+  <div class="container mt-4">
+    <h2>Issue Notification</h2>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Notification Details</h5>
+        <ul class="list-group">
+          <li class="list-group-item"><strong>Message:</strong> <%= @notification.message %></li>
+          <li class="list-group-item"><strong>Issue Description:</strong> <%= @notification.issue.description %></li>
+          <li class="list-group-item"><strong>Category:</strong> <%= @notification.category.name %></li>
+          <li class="list-group-item"><strong>Item:</strong> <%= @notification.issue.item.name %></li>
+          <li class="list-group-item"><strong>User:</strong> <%= @notification.issue.user.name %></li>
+        </ul>
+        <% if current_user.role == 'admin' && @notification.issue_id.present? %>
+          <%= link_to 'Resolve Issue', edit_issue_path(@notification.issue), class: 'btn btn-primary mt-3' %>
+        <% end %>
+      </div>
+    </div> 
+    <a href="<%= notifications_path %>" class="btn btn-secondary mt-3">Back to Notifications</a>
+  </div>
+<% end %>
+
+
+<% if current_user.role == 'admin' && @notification.issue_id.nil? %>
+  <div class="container mt-4">
+    <h2>Notification</h2>
+    <div class="alert alert-info">
+      <h3><%= @notification.priority.capitalize %> Priority</h3>
+      <p>
+        <strong>Date:</strong> <%= @notification.created_at.strftime("%B %d, %Y %H:%M") %>
+      </p>
+      <p>
+        <strong>Message:</strong> <%= @notification.message %>
+      </p>
+      <div class="notification-details">
+        <p>
+          <strong>Category:</strong> <%= @notification.category.name %>
+        </p>
+        <p>
+          <strong>Available Buffer:</strong> <%= @notification.category.buffer_quantity %>
+        </p>
+      </div>
+    </div>
+    <a href="<%= notifications_path %>" class="btn btn-secondary">Back to Notifications</a>
+  </div>
+<% end %>
+
+
+<% if current_user.role == 'employee' %>
+  <div class="container mt-4">
+    <h2>Notification</h2>
+    <div class="alert alert-success">
+      <%= @notification.message %>
+    </div>
+  </div>
+<% end %>
+

@@ -1,0 +1,13 @@
+<div class="alert-container">
+<% if flash[:success].present? %>
+  <div class="alert alert-success alert-above">
+    <%= flash[:success] %>
+  </div>
+<% elsif flash[:alert].present? %>
+  <div class="alert alert-danger alert-above">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+</div>
+
+

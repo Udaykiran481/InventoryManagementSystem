@@ -1,0 +1,28 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center">Add a New Brand</h2>
+          
+          <%= form_with(model: @brand, local: true) do |form| %>
+            <div class="mb-3">
+              <%= form.label :name, class: 'form-label' %>
+              <%= form.text_field :name, class: 'form-control', placeholder: 'Brand Name',required: true %>
+            </div>
+            
+            <div class="mb-3 text-center">
+              <%= form.submit 'Create Brand', class: 'btn btn-primary' %>
+            </div>
+            <%= link_to 'Back to Brands', brands_path, class: 'btn btn-secondary mt-3' %>
+          <% end %>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

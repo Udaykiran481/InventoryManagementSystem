@@ -1,0 +1,72 @@
+<div class="container mt-4">
+  <h1 class="mb-4">Issue Section</h1>
+  <% if current_user.role == 'admin' %>
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <%= form_tag(issues_path, method: :get, class: "form-inline") do %>
+          <div class="form-group">
+            <%= label_tag :employee_id, "Filter by Employee:" %>
+            <% employees_with_items = @employees.select { |e| e.items.present? } %>
+            <%= select_tag(:employee_id, options_for_select(employees_with_items.map { |e| [e.name, e.id] }, params[:employee_id]), include_blank: "Select an employee", class: "form-control") %>
+          </div>
+          <%= submit_tag("Filter", class: "btn btn-primary ml-2 mt-2") %>
+        <% end %>
+      </div>
+    </div>
+  <%end%>
+  <% if current_user.role == 'admin' && @selected_employee.present? %>
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Employee</th>
+          <th scope="col">Item Name</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @employee_items.each do |item| %>
+          <tr>
+            <% if item.issue.present? && !item.issue.resolved? %>
+              <td><%= item.employee.name %></td>
+              <td><%= item.name %></td>
+              <td>
+                <%= link_to 'Resolve Issue', edit_issue_path(item.issue.id), class: 'btn btn-success btn-sm' %>
+              </td>
+            <% else %>
+              <td colspan="3" class='text-center'>No issues are available for <%= item.employee.name %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% elsif current_user.role == 'employee' && @employee_items.any? %>
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Item Name</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @employee_items.each do |item| %>
+          <tr>
+            <td><%= item.name %></td>
+            <td><%= link_to "Report Issue", new_issue_path, class: "btn btn-success btn-sm" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <% if current_user.role == 'admin' %>
+    <p class="alert alert-warning text-center">Hey Admin, Please select an employee!</p>
+  <% else %>
+    <p class="alert alert-warning text-center">Hey <%= current_user.name %> no items are allocated to you!</p>
+  <% end %>
+<% end %>
+
+
+</div>

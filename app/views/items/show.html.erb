@@ -1,0 +1,32 @@
+<div class="container mt-5">
+  <h1>Item Details</h1>
+
+  <div class="card mt-4">
+    <div class="card-body">
+      <h5 class="card-title"><%= @item.name %></h5>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><strong>Brand:</strong> <%= @item.brand.name %></li>
+        <li class="list-group-item"><strong>Category:</strong> <%= @item.category.name %></li>
+        <li class="list-group-item"><strong>Employee:</strong> <%= @item.employee ? @item.employee.name : 'N/A' %></li>
+        <li class="list-group-item">
+          <strong>Status:</strong>
+          <span class="<%= @item.status ? 'text-success' : 'text-danger' %>">
+            <%= @item.status ? 'Working' : 'Not Working' %>
+          </span>
+        </li>
+        <li class="list-group-item"><strong>Notes:</strong> <%= @item.notes.present? ? @item.notes : 'No notes available' %></li>
+        <li class="list-group-item">
+          <strong>Item Document:</strong>
+          <% if @item.item_document.present? %>
+            <a href="<%= @item.item_document %>" target="_blank">View Document</a>
+          <% else %>
+            Not available
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <%= link_to 'Back to Items', items_path, class: 'btn btn-secondary mt-3' %>
+</div>
+
