@@ -51,7 +51,6 @@ class ItemsController < ApplicationController
       @employees = User.where(role: 'employee')
       employee_id = params[:item][:employee_id].to_i 
       if employee_id != @item.employee_id.to_i
-        # The employee is being changed, so update the buffer quantity
         if @item.update(employee_id: employee_id)
           category = @item.category
           category.update_buffer_quantity(1) if category
