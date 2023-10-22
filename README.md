@@ -1,24 +1,66 @@
-# README
+# Inventory Management System
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The Inventory Management System is a web application built with Ruby on Rails for efficient inventory control and management. It offers features to manage items, allocate inventory to employees, track stock levels, and handle item-related issues.
 
-Things you may want to cover:
+## Key Features
 
-* Ruby version
+- **Item Management**: Add, edit, and categorize items in your inventory.
+- **Employee Allocation**: Allocate items to employees, monitor quantities, and set buffer levels.
+- **Real-time Notifications**: Receive notifications for low stock levels and item allocation changes.
+- **Issue Tracking**: Employees can report item-related issues, and administrators can resolve issues.
+- **Elasticsearch Integration**: Utilize Elasticsearch for quick and powerful item and category search.
+- **User Authentication**: Secure user accounts with login and authorization features.
 
-* System dependencies
 
-* Configuration
+## Installation
 
-* Database creation
+* **Clone this repository:**
 
-* Database initialization
+   ```bash
+   git clone https://github.com/Udaykiran481/InventoryManagementSystem.git
+## Requirements
 
-* How to run the test suite
+The setups steps expect following tools installed on the system.
 
-* Services (job queues, cache servers, search engines, etc.)
+* **Rails 6.1.7.6**
+* **Ruby 3.1.2**
 
-* Deployment instructions
 
-* ...
+## Install system dependencies
+
+```bash
+bundle install
+install yarn
+```
+
+## Initialize the database
+
+```bash
+rails db:create db:migrate db:seed
+```
+
+## Start the Rails server
+
+You can start the rails server using the command given below.
+
+```bash
+rails s
+```
+
+And now you can visit the site with the URL http://localhost:3000
+
+
+## Admin login
+
+### Email: admin@example.com
+### Password: 123
+
+## Extra gems used
+* bcrypt
+* omniauth
+* omniauth-google-oauth2
+* omniauth-rails_csrf_protection
+* elasticsearch-model
+* elasticsearch-rails
+* faker
+* letter_opener

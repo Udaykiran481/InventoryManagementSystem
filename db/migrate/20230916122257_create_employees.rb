@@ -9,6 +9,3 @@ class CreateEmployees < ActiveRecord::Migration[6.1]
     end
   end
 end
-
-
-
