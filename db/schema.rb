@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_10_17_011240) do
+ActiveRecord::Schema.define(version: 2023_10_22_031221) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -93,6 +93,9 @@ ActiveRecord::Schema.define(version: 2023_10_17_011240) do
     t.string "item_document"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["brand_id"], name: "index_items_on_brand_id"
+    t.index ["category_id"], name: "index_items_on_category_id"
+    t.index ["employee_id"], name: "index_items_on_employee_id"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -139,7 +142,6 @@ ActiveRecord::Schema.define(version: 2023_10_17_011240) do
   add_foreign_key "issues", "users"
   add_foreign_key "items", "brands"
   add_foreign_key "items", "categories"
-  add_foreign_key "items", "users", column: "employee_id"
   add_foreign_key "notifications", "categories"
   add_foreign_key "notifications", "issues"
   add_foreign_key "notifications", "items"
