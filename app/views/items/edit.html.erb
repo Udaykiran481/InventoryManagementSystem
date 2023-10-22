@@ -4,24 +4,24 @@
       <h1 class="card-title">Edit Item</h1>
       <%= form_with(model: @item, url: item_path(@item), method: :patch, local: true, html: { class: 'form' }) do |form| %>
         <div class="form-group mb-3">
-          <%= form.label :name %>
-          <%= form.text_field :name, class: 'form-control',required: true %>
+          <%= form.label :name, "Name<span class='text-danger'>*</span>".html_safe %>
+          <%= form.text_field :name, class: 'form-control', required: true %>
         </div>
         <div class="form-group mb-3">
-          <%= form.label :brand %>
-          <%= form.collection_select :brand_id, Brand.all, :id, :name, { prompt: 'Select a Brand' }, class: 'form-control',required: true %>
+          <%= form.label :brand, "Brand<span class='text-danger'>*</span>".html_safe %>
+          <%= form.collection_select :brand_id, Brand.all, :id, :name, { prompt: 'Select a Brand' }, class: 'form-control', required: true %>
         </div>
         <div class="form-group mb-3">
-          <%= form.label :category %>
-          <%= form.collection_select :category_id, Category.all, :id, :name, { prompt: 'Select a Category' }, class: 'form-control',required: true %>
+          <%= form.label :category, "Category<span class='text-danger'>*</span>".html_safe %>
+          <%= form.collection_select :category_id, Category.all, :id, :name, { prompt: 'Select a Category' }, class: 'form-control', required: true %>
         </div>
         <div class="form-group mb-3">
           <%= form.label :employee %>
           <%= form.collection_select :employee_id, @employees, :id, :name, { prompt: 'Select an employee' }, class: 'form-control' %>
         </div>
         <div class="form-group mb-3">
-          <%= form.label :status %>
-          <%= form.text_field :status, class: 'form-control' %>
+          <%= form.label :status, "Status<span class='text-danger'>*</span>".html_safe %>
+          <%= form.text_field :status, class: 'form-control', required: true %>
         </div>
         <div class="form-group mb-3">
           <%= form.label :notes %>

@@ -20,22 +20,10 @@ class InvitationsController < ApplicationController
     reset_session
     @invitation = Invitation.find_by(invitation_token: params[:invitation_token])
     if @invitation
-      @user = User.new(name:@invitation.name,email: @invitation.email) # Assuming you're using email for registration
-      render new_user_path # Render the new user registration form
+      @user = User.new(name:@invitation.name,email: @invitation.email) 
+      render new_user_path
     else
       redirect_to root_path, alert: 'Invalid invitation token'
-    end
-  end
-
-  def update
-    # Handle the form submission when users complete their registration.
-    # Create a User model with a password at this point.
-    @user = User.new(user_params)
-    if @user.save
-      # Registration is successful, handle any additional logic.
-      redirect_to root_path, notice: 'Registration completed successfully!'
-    else
-      render :new_user
     end
   end
 

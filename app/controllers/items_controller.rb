@@ -77,7 +77,7 @@ class ItemsController < ApplicationController
         redirect_to items_path
       else
         @item.destroy
-        flash[:alert] = 'Cannot delete item with an associated employee.'
+        flash[:alert] = ' Deleted an item sucessfully!.'
         redirect_to items_path
       end
     end

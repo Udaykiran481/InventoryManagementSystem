@@ -11,14 +11,36 @@ require 'faker'
 
 # Delete existing records in the tables
 User.delete_all
+Employee.delete_all
 Brand.delete_all
 Category.delete_all
 
-# Create user records with Faker
-10.times do
+# Create two admin users
+User.create!(
+  name: "Admin User",
+  email: "admin@example.com",
+  password_digest: BCrypt::Password.create("123"),
+  role: "admin"
+)
+
+2.times do
   name = Faker::Name.unique.name
   email = Faker::Internet.unique.email
-  password = Faker::Internet.password
+  password = "123"  # Assuming you want a static password for admin users
+
+  User.create!(
+    name: name,
+    email: email,
+    password_digest: BCrypt::Password.create(password),
+    role: "admin"
+  )
+end
+
+# Create regular users
+8.times do
+  name = Faker::Name.unique.name
+  email = Faker::Internet.unique.email
+  password = "123"  # Assuming you want a static password for regular users
 
   User.create!(
     name: name,
@@ -28,23 +50,30 @@ Category.delete_all
 end
 
 # Create brand records with Faker
-10.times do
-  brand_name = Faker::Company.unique.name
+brand_names = ["HP", "Dell", "Samsung", "Anil Furniture", "Lenovo"]
 
+brand_names.each do |brand_name|
   Brand.create!(
     name: brand_name
   )
 end
 
 # Create category records with Faker
-10.times do
-  category_name = Faker::Commerce.unique.department
-  initial_quantity = Faker::Number.between(from: 10, to: 100)
+category_data = [
+  { name: "Laptop", initial_quantity: 15 },
+  { name: "Charger", initial_quantity: 15 },
+  { name: "Monitor", initial_quantity: 15 },
+  { name: "RAM", initial_quantity: 10 },
+  { name: "Memory cards", initial_quantity: 10 },
+  { name: "Chairs", initial_quantity: 20 },
+  { name: "Tables", initial_quantity: 20 }
+]
 
+category_data.each do |category|
   Category.create!(
-    name: category_name,
-    buffer_quantity: initial_quantity,
-    quantity: initial_quantity
+    name: category[:name],
+    buffer_quantity: category[:initial_quantity],
+    quantity: category[:initial_quantity]
   )
 end
 

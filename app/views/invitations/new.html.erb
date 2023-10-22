@@ -7,15 +7,15 @@
           
           <%= form_with model: @invitation, url: invitations_path, local: true do |form| %>
             <div class="form-group mb-3">
-              <%= form.label :name, 'Employee Name' %>
+              <%= form.label :name, 'Employee Name<span class="text-danger">*</span>'.html_safe %>
               <%= form.text_field :name, class: 'form-control', required: true %>
             </div>
-          
+            
             <div class="form-group mb-3">
-              <%= form.label :email, 'Employee Email' %>
+              <%= form.label :email, 'Employee Email<span class="text-danger">*</span>'.html_safe %>
               <%= form.email_field :email, class: 'form-control', required: true %>
             </div>
-          
+            
             <div class="actions">
               <%= form.submit 'Send Invitation', class: 'btn btn-primary' %>
             </div>

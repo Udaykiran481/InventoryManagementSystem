@@ -7,8 +7,11 @@
 
           <%= form_with(model: @brand, url: brand_path(@brand), method: :patch, local: true, html: { class: 'form' }) do |form| %>
             <div class="mb-3">
-              <%= form.label :name, class: 'form-label' %>
-              <%= form.text_field :name, class: 'form-control',required: true %>
+              <%= form.label :name, class: 'form-label' do %>
+                <%= 'Name' %>
+                <span class="text-danger">*</span>
+              <% end %>
+              <%= form.text_field :name, class: 'form-control', required: true %>
             </div>
 
             <div class="text-center">
@@ -22,3 +25,4 @@
     </div>
   </div>
 </div>
+
