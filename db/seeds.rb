@@ -94,7 +94,6 @@ def create_item_with_functions(name, brand_id, category_id, employee_id)
   # Check if the Item is saved successfully
   if item.save
     if item.employee_id?
-      puts item.employee_id
 
       # Retrieve the associated category
       category = item.category
