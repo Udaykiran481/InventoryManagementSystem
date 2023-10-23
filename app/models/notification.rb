@@ -15,7 +15,5 @@ class Notification < ApplicationRecord
       else 'primary'
       end
     end
-
-
   end
   

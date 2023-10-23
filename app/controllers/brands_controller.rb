@@ -49,10 +49,15 @@ class BrandsController < ApplicationController
     end
   
     def destroy
-      @brand.destroy
-      flash[:alert] = 'Brand was successfully destroyed.'
+      if @brand.items.empty?
+        @brand.destroy
+        flash[:success] = 'Brand was successfully destroyed.'
+      else
+        flash[:alert] = 'Brand cannot be deleted as it is associated with one or more items.'
+      end
       redirect_to brands_url
     end
+    
   
     private
   

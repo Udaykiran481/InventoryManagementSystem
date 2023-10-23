@@ -19,7 +19,7 @@ class UsersController < ApplicationController
         flash[:success] = 'Account created successfully!'
         redirect_to users_path
       else
-        flash.now[:error] = 'Account creation failed.'
+        flash.now[:error] = @user.errors.full_messages
         render :new
       end
     end

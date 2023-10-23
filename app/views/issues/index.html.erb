@@ -25,17 +25,23 @@
         </tr>
       </thead>
       <tbody>
+        <% issues_available = false %>
         <% @employee_items.each do |item| %>
-          <tr>
-            <% if item.issue.present? && !item.issue.resolved? %>
+          <% if item.issue.present? && !item.issue.resolved? %>
+            <% issues_available = true %>
+            <tr>
               <td><%= item.employee.name %></td>
               <td><%= item.name %></td>
               <td>
                 <%= link_to 'Resolve Issue', edit_issue_path(item.issue.id), class: 'btn btn-success btn-sm' %>
               </td>
-            <% else %>
-              <td colspan="3" class='text-center'>No issues are available for <%= item.employee.name %></td>
-            <% end %>
+            </tr>
+          <% end %>
+        <% end %>
+        
+        <% if !issues_available %>
+          <tr>
+            <td colspan="3" class='text-center'>No issues are available for any employee</td>
           </tr>
         <% end %>
       </tbody>

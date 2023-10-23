@@ -38,8 +38,12 @@
               <% end %>
             </tbody>
           </table>
-        <% else %>
-          <p class="alert alert-danger mt-3">No items allocated to <%= @employee.name %>.</p>
+        <% else %>     
+          <% if @employee.user.admin? %>
+            <p class="alert alert-danger mt-3">No items allocated to <%= @employee.name %> as an admin.</p>
+          <% else %>
+            <p class="alert alert-danger mt-3">No items allocated to <%= @employee.name %>.</p>
+          <% end %>
         <% end %>
       </div>
 

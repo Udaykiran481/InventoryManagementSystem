@@ -33,12 +33,18 @@
         </tr>
       </thead>
       <tbody>
+      <% if @items.present? %>
         <% @items.each do |item| %>
           <tr>
             <td><%= item.name %><%= item.id %></td>
             <td><%= item.category.name %></td>
           </tr>
         <% end %>
+      <% else %>
+        <tr>
+          <td colspan="2">No items are present under <%= @selected_category.name%>.</td>
+        </tr>
+      <% end %>
       </tbody>
     </table>
     <%else%>

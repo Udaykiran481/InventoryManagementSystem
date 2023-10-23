@@ -35,10 +35,12 @@ class EmployeesController < ApplicationController
   end
 
   def destroy
-    if @employee.destroy
-      flash[:success] = "Employee deleted successfully."
-    else
-      flash[:error] = "Failed to delete employee."
+    if @employee.user.admin?
+      flash[:alert] = "Admin employees cannot be deleted."
+    elsif @employee.items.present?
+      flash[:alert] = "Employee cannot be deleted as they are associated with one or more items."
+    else @employee.destroy
+      flash[:success] = "Employee was successfully deleted."
     end
     redirect_to employees_path
   end

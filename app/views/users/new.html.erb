@@ -7,15 +7,14 @@
       <div class="col-md-6">
         <div class="card  position-absolute" style="top: 50%; right:0px; transform: translate(-50%, -50%);">
           <div class="card-body">
-            <% if flash[:success] %>
-              <div class="alert alert-success">
-                <%= flash[:success] %>
-              </div>
-            <% end %>
-
-            <% if flash[:error] %>
+            <% if flash[:error].present? %>
               <div class="alert alert-danger">
-                <%= flash[:error] %>
+                <h3>Account creation failed:</h3>
+                <ul>
+                  <% flash[:error].each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
               </div>
             <% end %>
             <h2 class="card-title text-center mb-4">Sign Up</h2>

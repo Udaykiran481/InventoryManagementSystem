@@ -49,10 +49,15 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @category.destroy
-    flash[:success] = 'Category was successfully destroyed.'
+    if @category.items.empty?
+      @category.destroy
+      flash[:success] = 'Catgory was successfully destroyed.'
+    else
+      flash[:alert] = 'Category cannot be deleted as it is associated with one or more items.'
+    end
     redirect_to categories_path
   end
+  
 
   private
 

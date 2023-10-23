@@ -34,15 +34,18 @@ class Category < ApplicationRecord
         admin_users = User.where(role: 'admin')
         admin_users.each do |user|
             if buffer_quantity <= high_threshold
-                user.notifications.create(priority: :high, message: "High priority notification: Buffer quantity is low.",  item_id: item.id,category_id:id)
+                user.notifications.create(priority: :high, message: "High priority notification: Buffer quantity is low.",  item_id: item.id,category_id:id,buffer_quantity:self.buffer_quantity)
             elsif buffer_quantity <= medium_threshold
-                user.notifications.create(priority: :medium, message: "Medium priority notification: Buffer quantity is getting lesser .",  item_id: item.id,category_id:id)
+                user.notifications.create(priority: :medium, message: "Medium priority notification: Buffer quantity is getting lesser .",  item_id: item.id,category_id:id,buffer_quantity:self.buffer_quantity)
             elsif buffer_quantity <= low_threshold
-                user.notifications.create(priority: :low, message: "Low priority notification: Buffer quantity is getting low.",  item_id: item.id,category_id:id) 
+                user.notifications.create(priority: :low, message: "Low priority notification: Buffer quantity is getting low.",  item_id: item.id,category_id:id,buffer_quantity:self.buffer_quantity) 
             end
         end
     end
 end
+
+
+
 
 
 

@@ -2,7 +2,7 @@ class Brand < ApplicationRecord
     include Elasticsearch::Model
     include Elasticsearch::Model::Callbacks
     validates :name, presence: true, uniqueness: true
-
+    has_many :items
   
     settings index: { number_of_shards: 1 } do
       mappings dynamic: 'false' do

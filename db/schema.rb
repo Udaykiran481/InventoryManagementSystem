@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_10_22_064716) do
+ActiveRecord::Schema.define(version: 2023_10_23_104458) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -102,10 +102,11 @@ ActiveRecord::Schema.define(version: 2023_10_22_064716) do
     t.string "message"
     t.integer "priority", default: 0
     t.integer "category_id"
+    t.integer "issue_id"
     t.integer "item_id"
     t.integer "user_id"
     t.boolean "read", default: false
-    t.integer "issue_id"
+    t.integer "buffer_quantity", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_notifications_on_category_id"
