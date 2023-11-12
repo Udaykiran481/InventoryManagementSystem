@@ -9,6 +9,5 @@ class NotificationsController < ApplicationController
       @notification = Notification.find(params[:id])
     end
 
-    
-  end
+end
   

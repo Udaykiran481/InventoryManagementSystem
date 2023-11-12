@@ -23,7 +23,7 @@
       <% end %>
     </div>
   </div>
-  <%if @selected_category.present?%>
+
     <h2>Items</h2>
     <table class="table table-striped mt-3">
       <thead class="thead-dark">
@@ -47,7 +47,5 @@
       <% end %>
       </tbody>
     </table>
-    <%else%>
-      <p class='alert alert-warning text-center mt-3'>Hey Admin, please select a category.</p>
-    <%end%>
+    <%= link_to 'Back to Storage', storage_items_path, class: 'btn btn-secondary mt-3' %>
 </div>

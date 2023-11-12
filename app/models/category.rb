@@ -21,6 +21,9 @@ class Category < ApplicationRecord
     has_many :items
     has_many :notification
     validates :name, presence: true, uniqueness: true
+    validates :quantity, presence: true, numericality: { only_integer: true }
+    validates :buffer_quantity, presence: true, numericality: { only_integer: true }
+    validate :buffer_quantity_not_greater_than_quantity
 
     def update_buffer_quantity(decrease_by)
         new_buffer_quantity = buffer_quantity - decrease_by
@@ -42,6 +45,13 @@ class Category < ApplicationRecord
             end
         end
     end
+    private
+
+  def buffer_quantity_not_greater_than_quantity
+    if buffer_quantity.present? && quantity.present? && buffer_quantity > quantity
+      errors.add(:buffer_quantity, "cannot be greater than the quantity")
+    end
+  end
 end
 
 

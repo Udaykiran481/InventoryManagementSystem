@@ -1,13 +1,33 @@
 <div class="alert-container">
-<% if flash[:success].present? %>
-  <div class="alert alert-success alert-above">
-    <%= flash[:success] %>
-  </div>
-<% elsif flash[:alert].present? %>
-  <div class="alert alert-danger alert-above">
-    <%= flash[:alert] %>
-  </div>
-<% end %>
+  <% if flash[:success].present? %>
+    <div class="alert alert-success alert-above alert-dismissible fade show" id="success-alert">
+      <%= flash[:success] %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="closeAlert('success-alert')"></button>
+    </div>
+  <% elsif flash[:alert].present? %>
+    <div class="alert alert-danger alert-above alert-dismissible fade show" id="error-alert">
+      <%= flash[:alert] %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="closeAlert('error-alert')"></button>
+    </div>
+  <% end %>
 </div>
 
+<script>
+  document.addEventListener('turbolinks:load', function() {
+    function closeAlert(alertId) {
+      var alert = document.getElementById(alertId);
+      if (alert) {
+        alert.classList.add('fade-out');
+        setTimeout(function() {
+          alert.remove();
+        }, 3000); 
+      }
+    }
 
+    document.querySelectorAll('.alert .close').forEach(function(closeButton) {
+      closeButton.addEventListener('click', function() {
+        closeAlert(this.closest('.alert').id);
+      });
+    });
+  });
+</script>
