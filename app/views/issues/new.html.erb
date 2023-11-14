@@ -7,11 +7,21 @@
         <div class="form-group">
           <%= form.label :description, "Issue Description<span class='text-danger'>*</span>".html_safe %>
           <%= form.text_area :description, class: "form-control", rows: 4 %>
+          <% if @issue.errors[:description].any? %>
+            <div class="text-danger">
+              <%= "Description " + @issue.errors[:description].join(", ") %>
+            </div>
+          <% end %>
         </div>
       
         <div class="form-group">
           <%= form.label :item_id, "Select Item<span class='text-danger'>*</span>".html_safe %>
           <%= form.collection_select :item_id, @employee_items, :id, :name, {}, class: "form-control" %>
+          <% if @issue.errors[:item].any? %>
+            <div class="text-danger">
+              <%= "Item " + @issue.errors[:item].join(", ") %>
+            </div>
+          <% end %>
         </div>
       
         <div class="form-group" style="margin-top: 10px;">
@@ -23,6 +33,5 @@
     </div>
   </div>
 </div>
-
 
 

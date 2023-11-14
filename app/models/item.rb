@@ -22,6 +22,7 @@ class Item < ApplicationRecord
     has_many :notifications
     has_one :issue
     validates :name, presence: true
+    validates :status, presence: true
     has_many :issues,dependent: :destroy
 
 end

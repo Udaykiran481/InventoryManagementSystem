@@ -1,39 +1,50 @@
 <div class="image-container">
-<%= image_tag('Inventory Home.jpg', alt: 'Inventory management login img', class: 'full-width-height-image') %>
+  <%= image_tag('Inventory Home.jpg', alt: 'Inventory management login img', class: 'full-width-height-image') %>
 </div>
-<div class="container-fluid ">
+<div class="container-fluid">
   <div class="container mt-5">
     <div class="row justify-content-center">
       <div class="col-md-6">
-        <div class="card  position-absolute" style="top: 50%; right:0px; transform: translate(-50%, -50%);">
+        <div class="card position-absolute" style="top: 50%; right: 0px; transform: translate(-50%, -50%);">
           <div class="card-body">
-            <% if flash[:error].present? %>
-              <div class="alert alert-danger">
-                <h3>Account creation failed:</h3>
-                <ul>
-                  <% flash[:error].each do |message| %>
-                    <li><%= message %></li>
-                  <% end %>
-                </ul>
-              </div>
-            <% end %>
             <h2 class="card-title text-center mb-4">Sign Up</h2>
             <%= form_with(model: @user, local: true) do |form| %>
               <div class="mb-3">
-                <%= form.text_field :name, placeholder: "*Name" ,class: 'form-control', required: true %>
+                <%= form.text_field :name, placeholder: "*Name", class: 'form-control' %>
+                <% if @user.errors[:name].any? %>
+                  <div class="text-danger">
+                    <%= "Name " + @user.errors[:name].join(", ") %>
+                  </div>
+                <% end %>
               </div>
 
               <div class="mb-3">
-                <%= form.email_field :email, placeholder: "*email", class: 'form-control', required: true %>
+                <%= form.email_field :email, placeholder: "*Email", class: 'form-control'%>
+                <% if @user.errors[:email].any? %>
+                  <div class="text-danger">
+                    <%= "Email " + @user.errors[:email].join(", ") %>
+                  </div>
+                <% end %>
               </div>
 
               <div class="mb-3">
-                <%= form.password_field :password, placeholder: "*Create Password",class: 'form-control', required: true %>
+                <%= form.password_field :password, placeholder: "*Create Password", class: 'form-control' %>
+                <% if @user.errors[:password].any? %>
+                  <div class="text-danger">
+                    <%= "Password " + @user.errors[:password].join(", ") %>
+                  </div>
+                <% end %>
               </div>
 
               <div class="mb-3">
-                <%= form.password_field :password_confirmation, placeholder: "*Confirm Password" ,class: 'form-control', required: true %>
+                <%= form.password_field :password_confirmation, placeholder: "*Confirm Password", class: 'form-control' %>
+                <% if @user.errors[:password].any? %>
+                  <div class="text-danger">
+                    <%= "Password confirmation " + @user.errors[:password].join(", ") %>
+                  </div>
+                <% end %>
               </div>
+              
               <div class="mb-3">
                 <%= form.submit "Sign Up", class: 'btn btn-primary btn-block' %>
               </div> 

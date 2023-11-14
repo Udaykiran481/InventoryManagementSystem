@@ -11,7 +11,12 @@
                 <%= 'Name' %>
                 <span class="text-danger">*</span>
               <% end %>
-              <%= form.text_field :name, class: 'form-control', required: true %>
+              <%= form.text_field :name, class: 'form-control'%>
+              <% if @brand.errors[:name].any? %>
+                <div class="text-danger">
+                  <%= 'Brand name '+@brand.errors[:name].join(", ") %>
+                </div>
+              <% end %>
             </div>
 
             <div class="text-center">

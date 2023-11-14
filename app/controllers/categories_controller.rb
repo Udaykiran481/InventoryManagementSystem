@@ -30,7 +30,6 @@ class CategoriesController < ApplicationController
       flash[:success] = 'Category was successfully created.'
       redirect_to categories_path
     else
-      flash[:alert] = 'Failed to create the category. Please check the form.'
       render 'new'
     end
   end
@@ -43,7 +42,6 @@ class CategoriesController < ApplicationController
       flash[:success] = 'Category was successfully updated.'
       redirect_to categories_path
     else
-      flash[:alert] = 'Failed to update the category. Please check the form.'
       render 'edit'
     end
   end

@@ -26,10 +26,10 @@ class ItemsController < ApplicationController
     end
   
     def create
+      @employees = User.where(role: 'employee')
       @item = Item.new(item_params)
       if @item.save
         if @item.employee_id?
-          puts @item.employee_id
           category = @item.category
           category.update_buffer_quantity(1) if category
           category.check_and_send_notifications(@item) if category
@@ -55,6 +55,7 @@ class ItemsController < ApplicationController
           category = @item.category
           category.update_buffer_quantity(1) if category
           category.check_and_send_notifications(@item) if category
+          redirect_to items_path
           flash[:success] = 'Item was successfully allocated to the employee.'
         else
           flash[:error] = 'Failed to allocate item.'
@@ -62,13 +63,12 @@ class ItemsController < ApplicationController
       else
         # Only update the item attributes (not the employee)
         if @item.update(item_params.except(:employee_id))
+          redirect_to items_path
           flash[:success] = 'Item was successfully updated.'
         else
-          flash[:alert] = 'Failed to update the item.'
+          render 'edit'
         end
       end
-    
-      redirect_to items_path
     end
     
     def destroy

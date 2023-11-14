@@ -46,9 +46,9 @@
     width: 450px;
     margin-top: 20px;
     padding-left: 80px;
-    position: absolute;
+    position: fixed;
     left: 0;
-    bottom: 10%;
+    bottom: 8%;
     z-index: 1021; 
   }
   

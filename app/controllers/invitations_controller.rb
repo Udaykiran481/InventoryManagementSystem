@@ -11,7 +11,7 @@ class InvitationsController < ApplicationController
       send_invitation_email(@invitation)
       redirect_to employees_path, notice: 'Invitation sent successfully!'
     else
-      render :new
+      render 'new'
     end
   end
 

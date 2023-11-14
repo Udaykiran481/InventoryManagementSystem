@@ -23,14 +23,14 @@ Item.destroy_all
 User.create!(
   name: "Admin User",
   email: "admin@example.com",
-  password_digest: BCrypt::Password.create("123"),
+  password_digest: BCrypt::Password.create("Password@123"),
   role: "admin"
 )
 
 2.times do
   name = Faker::Name.unique.name
   email = Faker::Internet.unique.email
-  password = "123"  
+  password = "Password@123"  
 
   User.create!(
     name: name,
@@ -44,7 +44,7 @@ end
 8.times do
   name = Faker::Name.unique.name
   email = Faker::Internet.unique.email
-  password = "123"  
+  password = "Password@123"  
 
   User.create!(
     name: name,

@@ -2,7 +2,6 @@ class User < ApplicationRecord
     validates :email, presence: true, uniqueness: true
     validates :name, presence: true
     validates :password_digest, presence: true ,on: :create
-    validates :password, presence: true, on: :create
     validate :password_complexity, on: :create
     enum role: { employee: 0, admin: 1 }
     has_secure_password

@@ -30,7 +30,6 @@ class BrandsController < ApplicationController
         flash[:success] = 'Brand was successfully created.'
         redirect_to brands_path  
       else
-        flash[:alert] = 'Failed to create a brand'
         render 'new'
       end
     end
@@ -43,7 +42,6 @@ class BrandsController < ApplicationController
         flash[:success] = 'Brand was successfully updated.'
         redirect_to brands_path
       else
-        flash[:alert] = 'Failed to update the form'
         render 'edit'
       end
     end

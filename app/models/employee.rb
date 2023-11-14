@@ -1,6 +1,8 @@
 class Employee < ApplicationRecord
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
+  validates :email, presence: true, uniqueness: true
+  validates :name, presence: true
 
   settings index: { number_of_shards: 1 } do
     mappings dynamic: 'false' do

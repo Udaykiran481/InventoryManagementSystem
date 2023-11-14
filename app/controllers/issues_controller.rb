@@ -38,7 +38,6 @@ class IssuesController < ApplicationController
         flash[:success] = 'Issue was successfully reported.'
         redirect_to issues_path
       else
-        flash[:alert] = 'Issue was failed to report.'
         render 'new'
       end
     end

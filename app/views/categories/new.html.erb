@@ -7,23 +7,38 @@
           <%= form_with(model: @category, local: true) do |form| %>
             <div class="mb-3">
               <%= form.label :name, "Name<span class='text-danger'>*</span>".html_safe, class: 'form-label' %>
-              <%= form.text_field :name, class: 'form-control', required: true %>
+              <%= form.text_field :name, class: 'form-control' %>
+              <% if @category.errors[:name].any? %>
+                <div class="text-danger">
+                  <%= 'Category name '+@category.errors[:name].join(", ") %>
+                </div>
+              <% end %>
             </div>
 
             <div class="mb-3">
               <%= form.label :quantity, "Quantity<span class='text-danger'>*</span>".html_safe, class: 'form-label' %>
-              <%= form.number_field :quantity, class: 'form-control', required: true %>
+              <%= form.number_field :quantity, class: 'form-control' %>
+              <% if @category.errors[:quantity].any? %>
+                <div class="text-danger">
+                  <%= @category.errors[:quantity].join(", ") %>
+                </div>
+              <% end %>
             </div>
 
             <div class="mb-3">
               <%= form.label :buffer_quantity, "Buffer Quantity<span class='text-danger'>*</span>".html_safe, class: 'form-label' %>
-              <%= form.number_field :buffer_quantity, class: 'form-control', required: true %>
+              <%= form.number_field :buffer_quantity, class: 'form-control' %>
+              <% if @category.errors[:buffer_quantity].any? %>
+                <div class="text-danger">
+                  <%= @category.errors[:buffer_quantity].join(", ") %>
+                </div>
+              <% end %>
             </div>
 
             <div class="mb-3 text-center">
               <%= form.submit 'Save Category', class: 'btn btn-primary' %>
             </div>
-            <%= link_to 'Back to Categories', categories_path, class: 'btn btn-secondary mt-3' %>
+            <%= link_to 'Cancel', categories_path, class: 'btn btn-secondary mt-3' %>
           <% end %>
         </div>
       </div>

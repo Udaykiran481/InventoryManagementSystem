@@ -4,28 +4,40 @@
       <div class="card">
         <div class="card-body">
           <h2 class="card-title text-center">Send an Invitation</h2>
-          
+
           <%= form_with model: @invitation, url: invitations_path, local: true do |form| %>
             <div class="form-group mb-3">
               <%= form.label :name, 'Employee Name<span class="text-danger">*</span>'.html_safe %>
-              <%= form.text_field :name, class: 'form-control', required: true %>
+              <%= form.text_field :name, class: 'form-control' %>
+              <% if @invitation.errors[:name].any? %>
+                <div class="text-danger">
+                  <%= 'Name '+@invitation.errors[:name].join(", ") %>
+                </div>
+              <% end %>
             </div>
-            
+
             <div class="form-group mb-3">
               <%= form.label :email, 'Employee Email<span class="text-danger">*</span>'.html_safe %>
-              <%= form.email_field :email, class: 'form-control', required: true %>
+              <%= form.email_field :email, class: 'form-control' %>
+              <% if @invitation.errors[:email].any? %>
+                <div class="text-danger">
+                  <%= 'Email '+@invitation.errors[:email].join(", ") %>
+                </div>
+              <% end %>
             </div>
-            
+
             <div class="actions">
               <%= form.submit 'Send Invitation', class: 'btn btn-primary' %>
             </div>
           <% end %>
-          
+
           <div>
-          <%= link_to 'Back to Employees', employees_path, class: 'btn btn-secondary mt-3' %>
+            <%= link_to 'Back to Employees', employees_path, class: 'btn btn-secondary mt-3' %>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
