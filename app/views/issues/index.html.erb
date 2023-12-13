@@ -77,6 +77,10 @@
     <p class="alert alert-warning text-center">Hey <%= current_user.name %> no items are allocated to you!</p>
   <%end%>
 <% end %>
+<%if current_user && current_user.admin?%>
+  <%= link_to 'Back', storage_items_path, class: 'btn btn-secondary mt-3' %>
+  <%else%>
+    <%= link_to 'Back', users_path, class: 'btn btn-secondary mt-3' %>
+<%end%>
 
-<%= link_to 'Back', storage_items_path, class: 'btn btn-secondary mt-3' %>
 </div>

@@ -92,7 +92,7 @@ class ItemsController < ApplicationController
       @item = Item.find(params[:id])
       if @item.update(item_params)
         flash[:success] = 'Item successfully reallocated.'
-        redirect_to item_paths
+        redirect_to items_path
       else
         flash[:error] = 'Failed to reallocate item.'
         render 'reallocate'
@@ -105,12 +105,13 @@ class ItemsController < ApplicationController
         category = @item.category
         category.update_buffer(1) if category
         flash[:success] = 'Item successfully deallocated.'
-        redirect_to item_paths
+        redirect_to items_path
       else
         flash[:error] = 'Failed to deallocate item.'
         redirect_to item_path(@item)
       end
     end
+    
 
     private
   
