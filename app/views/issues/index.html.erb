@@ -30,7 +30,7 @@
           <% if item.issue.present? && !item.issue.resolved? %>
             <% issues_available = true %>
             <tr>
-              <td><%= item.employee.name %></td>
+              <td><%= item.employee&.name %></td>
               <td><%= item.name %></td>
               <td>
                 <%= link_to 'Resolve Issue', edit_issue_path(item.issue.id), class: 'btn btn-success btn-sm' %>
@@ -78,5 +78,5 @@
   <%end%>
 <% end %>
 
-<%= link_to 'Back to Issues', issues_path, class: 'btn btn-secondary mt-3' %>
+<%= link_to 'Back', storage_items_path, class: 'btn btn-secondary mt-3' %>
 </div>

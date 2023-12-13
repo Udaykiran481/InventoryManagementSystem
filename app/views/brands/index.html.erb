@@ -12,7 +12,7 @@
       </div>
     <% end %>
     </div>
-  <% if @brands.any? %>
+    <% if @brands.any? %>
     <table class="table table-striped mt-3">
       <thead>
         <tr>
@@ -25,17 +25,22 @@
           <tr>
             <td><%= brand.name %></td>
             <td>
-            <%= link_to 'Edit', edit_brand_path(brand), class: 'btn btn-primary btn-sm' %>
-            <%= link_to 'Delete', brand, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+              <% if brand.items.present? %>
+                <a href="#" class="btn btn-primary btn-sm disabled" disabled="disabled">Edit</a>
+                <a href="#" class="btn btn-danger btn-sm disabled" disabled="disabled">Delete</a>
+              <% else %>
+                <%= link_to 'Edit', edit_brand_path(brand), class: 'btn btn-primary btn-sm' %>
+                <%= link_to 'Delete', brand, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm'%>
+              <% end %>
             </td>
           </tr>
         <% end %>
       </tbody>
-    </table>
+    </table>  
   <% else %>
   <p class="alert alert-danger text-center mt-3">No brands found.</p>
 <% end %>
-<%= link_to 'Back to Brands', brands_path, class: 'btn btn-secondary mt-3' %>
+<%= link_to 'Back', employees_path, class: 'btn btn-secondary mt-3' %>
 </div>
 
 

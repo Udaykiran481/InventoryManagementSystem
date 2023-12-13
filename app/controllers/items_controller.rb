@@ -81,7 +81,37 @@ class ItemsController < ApplicationController
         redirect_to items_path
       end
     end
+   
+
+    def reallocate
+      @item = Item.find(params[:id])
+      @employees = User.where(role: 'employee')
+    end
   
+    def perform_reallocate
+      @item = Item.find(params[:id])
+      if @item.update(item_params)
+        flash[:success] = 'Item successfully reallocated.'
+        redirect_to item_paths
+      else
+        flash[:error] = 'Failed to reallocate item.'
+        render 'reallocate'
+      end
+    end
+  
+    def deallocate
+      @item = Item.find(params[:id])
+      if @item.update(employee_id: nil)
+        category = @item.category
+        category.update_buffer(1) if category
+        flash[:success] = 'Item successfully deallocated.'
+        redirect_to item_paths
+      else
+        flash[:error] = 'Failed to deallocate item.'
+        redirect_to item_path(@item)
+      end
+    end
+
     private
   
     def set_item

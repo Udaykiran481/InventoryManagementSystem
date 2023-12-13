@@ -30,6 +30,11 @@ class Category < ApplicationRecord
         update(buffer_quantity: new_buffer_quantity)
     end
     
+    def update_buffer(increase_by)
+      new_buffer_quantity = buffer_quantity + increase_by
+      update(buffer_quantity: new_buffer_quantity)
+    end
+
     def check_and_send_notifications(item)
         low_threshold = quantity * 0.8
         medium_threshold = quantity * 0.5

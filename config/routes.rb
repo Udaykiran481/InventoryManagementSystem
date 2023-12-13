@@ -5,11 +5,17 @@ Rails.application.routes.draw do
   resources :employees
   resources :brands
   resources :categories
-  resources :items
   resources :issues 
   resources :invitations, only: [:new, :create, :edit, :update]
   resources :storage_items, only: [:index, :update]
   resources :notifications, only: [:index, :show]
+  resources :items do
+    member do
+      get 'reallocate'
+      patch 'perform_reallocate'
+      delete 'deallocate'
+    end
+  end
 
   get '/login', to: 'sessions#new', as: 'login'
   post '/login', to: 'sessions#create'

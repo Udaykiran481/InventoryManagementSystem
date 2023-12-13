@@ -1,0 +1,22 @@
+<div class="container">
+  <h1 class="my-4">Reallocate Item</h1>
+
+  <%= form_for @item, url: perform_reallocate_item_path(@item), method: :patch do |form| %>
+    <div class="card">
+      <div class="card-body">
+        <div class="form-group">
+          <%= form.label :employee_id, 'Select Employee', class: 'form-label' %>
+          <%= form.select :employee_id, options_for_select(@employees.map { |employee| [employee.name, employee.id] }), {}, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="d-flex justify-content-between">
+          <%= form.submit 'Reallocate', class: 'btn btn-primary' %>
+          <%= link_to 'Cancel', item_path(@item), class: 'btn btn-secondary' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+

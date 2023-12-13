@@ -30,8 +30,13 @@
             <td><%= category.quantity %></td>
             <td><%= category.buffer_quantity %></td>
             <td>
-            <%= link_to 'Edit', edit_category_path(category), class: 'btn btn-primary btn-sm' %>
-            <%= link_to 'Delete', category, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %> 
+              <% if category.items.present? %>
+                <%= link_to 'Edit', edit_category_path(category), class: 'btn btn-primary btn-sm' %>
+                <a href="#" class="btn btn-danger btn-sm disabled" disabled="disabled">Delete</a>
+              <% else %>
+                <%= link_to 'Edit', edit_category_path(category), class: 'btn btn-primary btn-sm' %>
+                <%= link_to 'Delete', category, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+              <% end %>
             </td>
           </tr>
         <% end %>
@@ -40,5 +45,5 @@
   <% else %>
     <p class="alert alert-danger text-center mt-3">No categories found.</p>
   <% end %>
-  <%= link_to 'Back to Categories', categories_path, class: 'btn btn-secondary mt-3' %>
+  <%= link_to 'Back', brands_path, class: 'btn btn-secondary mt-3' %>
 </div>
